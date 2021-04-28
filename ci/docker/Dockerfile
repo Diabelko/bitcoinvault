@@ -35,7 +35,7 @@ FROM base AS builder
 WORKDIR /code
 COPY . .
 RUN env CFLAGS=-O2 CXXFLAGS=-O2 ./autogen.sh \
-    && ./configure --disable-bench --disable-tests --disable-wallet --with-gui=no \
+    && ./configure --disable-bench --disable-tests --with-gui=no \
     && make -j`nproc` \
     && make install
 
@@ -48,6 +48,7 @@ LABEL revision=$GIT_COMMIT
 
 ENV BVAULTD_SERVER 1
 ENV BVAULTD_TESTNET_ENABLED 0
+ENV BVAULTD_REGTEST_ENABLED 0
 ENV BVAULTD_NET_BAN_SCORE 100000
 ENV BVAULTD_NET_BAN_TIME 60
 ENV BVAULTD_COMMIT $GIT_COMMIT

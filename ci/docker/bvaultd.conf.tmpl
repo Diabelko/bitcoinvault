@@ -44,3 +44,15 @@ rpcport={{ default .Env.BVAULTD_RPC_PORT "8332" }}
 rpcuser={{ default .Env.BVAULTD_RPC_USER "root" }}
 rpcpassword={{ default .Env.BVAULTD_RPC_PASSWORD "rpc_password" }}
 {{end}}
+
+{{ if eq .Env.BVAULTD_REGTEST_ENABLED "1" }}
+regtest=1
+
+[regtest]
+rpcallowip={{ default .Env.BVAULTD_RPC_ALLOW_IP_FIRST "127.0.0.0/24" }}
+rpcallowip={{ default .Env.BVAULTD_RPC_ALLOW_IP_SECOND "10.0.0.0/8" }}
+rpcbind=0.0.0.0
+rpcport={{ default .Env.BVAULTD_RPC_PORT "18443" }}
+rpcuser={{ default .Env.BVAULTD_RPC_USER "root" }}
+rpcpassword={{ default .Env.BVAULTD_RPC_PASSWORD "rpc_password" }}
+{{end}}
